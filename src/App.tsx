@@ -1,29 +1,44 @@
-import { 
+import {
   Center,
   ChakraProvider,
   Input,
   Box,
-  Button
+  Button, FormControl
 } from '@chakra-ui/react'
 import { login } from './services/login';
+import {Header} from "./components/Header/Header";
+import {MyButton} from "./components/Button";
+import {Card} from "./components/Card";
+import { useState } from 'react';
+
 
 function App() {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const handleLogin = () => {
+    if (!email || !senha) {
+      alert('Preencha email e senha');
+      return;
+    }
+    login(email,senha);
+  }
+
   return (
     <ChakraProvider>
-      <Box minHeight='100vh' backgroundColor='#9413dc' padding='25px'>
-        <Box backgroundColor='#FFFFFF' borderRadius='25px' padding='15px' >
-          <Center>
-            <h1>Faça o login</h1>
-          </Center>
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Center>
-            <Button onClick={login} colorScheme='teal' size='sm' width='100%' marginTop='5px'>
-              Button
-            </Button>
-          </Center>
-        </Box>
-      </Box>
+      <Header></Header>
+      <Center bgColor="gray" minHeight="100vh" flex={1}  minH="calc(100vh - 77px)">
+        <Card paragraph={"Bem vindo ao Dio Bank"} details={" Preencha seus dados "}>
+          <FormControl>
+            Email
+          </FormControl>
+          <Input type="email" placeholder="" mb={4} onChange={(e) => setEmail(e.target.value)} />
+          <FormControl>
+            Senha
+          </FormControl>
+          <Input type="Senha" placeholder="" mb={6} onChange={(e) => setSenha(e.target.value)} />
+          <MyButton onClick={handleLogin} label="Entrar" />
+        </Card>
+      </Center>
     </ChakraProvider>
   );
 }

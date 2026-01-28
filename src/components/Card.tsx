@@ -1,15 +1,43 @@
+import {Box, Heading, Text, VStack} from "@chakra-ui/react";
+import React from "react";
+
 interface ICard {
-  id: number,
-  paragraph: string,
-  details: string
+  title?: string;
+  paragraph: string;
+  details: string;
+  children?: React.ReactNode;
 }
 
-export const Card = ({ id, paragraph, details }: ICard) => {
+export const Card = ({ title, paragraph, details, children }: ICard) => {
   return(
-    <div>
-      <h1>Card {id}</h1>
-      <p>{paragraph}</p>
-      <p>{details}</p>
-    </div>
+    <Box
+        bg="white"
+        borderRadius="25px"
+        padding="25px"
+        boxShadow="lg"
+        width="100%"
+        maxWidth="400px"
+    >
+        <VStack
+            align = "flex-start"
+            spacing={3}
+        >
+            <Heading size={'md'}>
+                {title}
+            </Heading>
+            <Text fontSize = 'sm'
+                  color={'gray'}
+            >
+                {paragraph}
+            </Text>
+            <Text fontWeight="bold">
+                {details}
+            </Text>
+            <Box w="100%" mt={4}>
+                {children}
+            </Box>
+
+        </VStack>
+    </Box>
   )
 }
