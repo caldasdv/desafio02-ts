@@ -1,4 +1,4 @@
-import {Button, color} from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 
 interface IButton {
     onClick: () => void;
