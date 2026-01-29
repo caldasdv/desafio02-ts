@@ -38,10 +38,10 @@ export const LoginCard = () =>{
       console.log(userData)
     return(
         <Card paragraph={"Bem vindo ao Dio Bank"} details={" Preencha seus dados "}>
-            {
+            {/* {
                 userData === null || userData === undefined ? <h1>Loading...</h1> : <h1>Informações Carregadas </h1>
 
-            }
+            } */}
           <FormControl>
             Email
           </FormControl>

@@ -1,17 +1,18 @@
-import { Center, ChakraProvider } from '@chakra-ui/react'
-import { Header } from "./components/Header/Header";
-import { LoginCard } from './components/LoginCard';
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
 
 function App() {
   
   return (
-    <ChakraProvider>
-      <Header></Header>
-      <Center bgColor="gray" minHeight="100vh" flex={1}  minH="calc(100vh - 77px)">
-        <LoginCard/>
-      </Center>
-    </ChakraProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path = '/' element={ <Home/>}/>
+        <Route path = '/conta' element={
+          <h1>Conta</h1>
+        }/>
+      </Routes>
+    </BrowserRouter>
+    
   );
 }
 
