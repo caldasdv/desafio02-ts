@@ -1,16 +1,21 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import {ChakraProvider} from "@chakra-ui/react";
+import {Layout} from "./components/Layout";
+import Conta from "./pages/Conta";
 
 function App() {
   
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path = '/' element={ <Home/>}/>
-        <Route path = '/conta' element={
-          <h1>Conta</h1>
-        }/>
-      </Routes>
+        <ChakraProvider>
+            <Layout>
+                <Routes>
+                    <Route path = '/' element={ <Home/>}/>
+                    <Route path = '/conta' element={ <Conta/>}/>
+                </Routes>
+            </Layout>
+        </ChakraProvider>
     </BrowserRouter>
     
   );

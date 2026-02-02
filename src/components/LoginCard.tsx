@@ -12,7 +12,7 @@ interface UserData{
 }
 
 export const LoginCard = () =>{
-        
+
       //api
       //<p>{userData?.nome}</p>
       const [userData,setUserData] = useState<null | UserData>()
