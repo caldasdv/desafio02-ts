@@ -14,11 +14,6 @@ interface UserData {
 }
 
 export const Conta = () => {
-<<<<<<< HEAD
-=======
-  const context = useContext(AppContext);
-  console.log("Conta", context);
->>>>>>> c5bc199a65bd406702df37d0f806d4bdfddedb93
   const [userData, setUserData] = useState<null | UserData>();
   useEffect(() => {
     const getData = async () => {
@@ -29,17 +24,12 @@ export const Conta = () => {
   }, []);
   console.log(userData);
   const actualData = new Date();
-<<<<<<< HEAD
 
   const { id } = useParams();
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(AppContext);
   console.log("Conta", isLoggedIn);
   !isLoggedIn && navigate("/");
-=======
-  const { id } = useParams();
-  const navigate = useNavigate();
->>>>>>> c5bc199a65bd406702df37d0f806d4bdfddedb93
   if (userData && id !== userData.id) {
     navigate("/");
   }
