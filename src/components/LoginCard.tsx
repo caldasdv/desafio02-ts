@@ -1,39 +1,29 @@
 import { FormControl, Input } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import {useContext, useState} from "react";
 import { Card } from "./Card";
 import { MyButton } from "./Button";
 import { Login } from "../services/Login";
-import { api } from "../api";
+import {AppContext} from "./AppContext";
+import {useNavigate} from "react-router-dom";
 
-interface UserData {
-  email: string;
-  senha: string;
-  nome: string;
-}
-
-export const LoginCard = () => {
-  //api
-  //<p>{userData?.nome}</p>
-  const [userData, setUserData] = useState<null | UserData>();
-
+export const  LoginCard = () => {
   //button
   const [email, setEmail] = useState<string>("");
   const [senha, setSenha] = useState<string>("");
-  const handleLogin = () => {
-    if (!email || !senha) {
-      alert("Preencha email e senha");
+  const { setIsLoggedIn } = useContext(AppContext);
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+      const loggedIn = await Login(email,senha)
+    if (!loggedIn) {
+      alert("Email ou senha incorretos");
       return;
     }
-    Login(email, senha);
+    setIsLoggedIn(true);
+    navigate("/conta/1");
   };
-  useEffect(() => {
-    const getData = async () => {
-      const data: any | UserData = await api;
-      setUserData(data);
-    };
-    getData();
-  }, []);
-  console.log(userData);
+
+
   return (
     <Card paragraph={"Bem vindo ao Dio Bank"} details={" Preencha seus dados "}>
       {/* {

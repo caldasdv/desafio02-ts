@@ -22,13 +22,11 @@ export const Conta = () => {
     };
     getData();
   }, []);
-  console.log(userData);
   const actualData = new Date();
 
   const { id } = useParams();
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(AppContext);
-  console.log("Conta", isLoggedIn);
   !isLoggedIn && navigate("/");
   if (userData && id !== userData.id) {
     navigate("/");

@@ -1,15 +1,9 @@
 import { api } from "../api";
-import { useContext } from "react";
-import { AppContext } from "../components/AppContext";
 
-export const Login = async (email: string, senha: string): Promise<void> => {
-  const { isLoggedIn } = useContext(AppContext);
-  console.log(isLoggedIn);
-  const data: any = await api;
-  if (email !== data.email) {
-    return alert("Email invalido");
+export const Login = async (email: string, senha: string): Promise<boolean> => {
+    const data: any = await api;
+  if (email !== data.email && senha !== data.email) {
+    return false;
   }
-  if (email === data.email) {
-    alert("Bem vindo ao Dio Bank!");
-  }
+  return senha === data.senha && email === data.email;
 };

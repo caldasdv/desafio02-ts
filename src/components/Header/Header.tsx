@@ -8,10 +8,16 @@ import {
 } from "@chakra-ui/react";
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
+import {useNavigate} from "react-router-dom";
 
 export const Header = () => {
-  const context = useContext(AppContext);
-  console.log("Header", context);
+  const { isLoggedIn,setIsLoggedIn } = useContext(AppContext);
+  const navigate = useNavigate();
+  const logout =() =>{
+    setIsLoggedIn(false);
+    navigate("/");
+  }
+
   return (
     <Flex
       as="header"
@@ -34,7 +40,11 @@ export const Header = () => {
         Dio Bank
       </Text>
       <Spacer />
-      <Button colorScheme="red">Sair</Button>
+      {
+        isLoggedIn && (
+            <Button colorScheme="red" onClick={()=> logout() }>Sair</Button>
+          )
+      }
     </Flex>
   );
 };
