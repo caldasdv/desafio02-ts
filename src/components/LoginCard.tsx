@@ -5,6 +5,7 @@ import { MyButton } from "./Button";
 import { Login } from "../services/Login";
 import {AppContext} from "./AppContext";
 import {useNavigate} from "react-router-dom";
+import {changeLocalStorage} from "../services/Storage";
 
 export const  LoginCard = () => {
   //button
@@ -20,6 +21,7 @@ export const  LoginCard = () => {
       return;
     }
     setIsLoggedIn(true);
+    changeLocalStorage({login: true});
     navigate("/conta/1");
   };
 

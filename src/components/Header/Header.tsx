@@ -9,11 +9,13 @@ import {
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import {useNavigate} from "react-router-dom";
+import {changeLocalStorage} from "../../services/Storage";
 
 export const Header = () => {
   const { isLoggedIn,setIsLoggedIn } = useContext(AppContext);
   const navigate = useNavigate();
   const logout =() =>{
+    changeLocalStorage({login: false});
     setIsLoggedIn(false);
     navigate("/");
   }
